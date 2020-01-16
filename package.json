@@ -6,7 +6,11 @@
   "scripts": {
     "migrate": "NODE_ENV=test sequelize db:migrate:undo:all && NODE_ENV=test sequelize db:migrate",
     "test": "NODE_ENV=test npm run migrate && NODE_ENV=test nyc --report=html --reporter=text mocha --require @babel/register src/tests/*.js --exit",
-    "dev": "nodemon --exec babel-node app.js"
+    "dev": "nodemon --exec babel-node ./src/app.js",
+    "start": "npm run create && NODE_ENV=staging node --require @babel/register ./src/app.js",
+    "create": "NODE_ENV=staging sequelize db:migrate",
+    "build": "npm run clear && babel src --out-dir build",
+    "clear": "rm -rf build"
   },
   "author": "Joe",
   "license": "ISC",
@@ -27,6 +31,7 @@
     "pg": "^7.17.1",
     "pg-hstore": "^2.3.3",
     "sequelize": "^5.21.3",
+    "sequelize-cli": "^5.5.1",
     "supertest": "^4.0.2"
   },
   "devDependencies": {

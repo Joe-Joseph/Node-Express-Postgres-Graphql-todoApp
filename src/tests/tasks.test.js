@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import request from 'supertest';
-import app from '../../app';
+import app from '../app';
 
 describe('Tasks resolver', () => {
     it('Should return tasks', (done) => {
